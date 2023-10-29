@@ -2,8 +2,8 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
-void S(const double x, const double eps, int& n, double& s);
-void A(const double x, const int n, double& a);
+double S(const double x, const double eps, int& n, double& s);
+double A(const double x, const int n, double& a);
 int main()
 {
 	double xp, xk, x, dx, eps, s = 0;
@@ -34,7 +34,7 @@ int main()
 	cout << "-------------------------------------------------" << endl;
 	return 0;
 }
-void S(const double x, const double eps, int& n, double& s)
+double S(const double x, const double eps, int& n, double& s)
 {
 	n = 0; 
 	double a = (x-1)/x; 
@@ -44,10 +44,12 @@ void S(const double x, const double eps, int& n, double& s)
 		A(x, n, a);
 		s += a;
 	} while (abs(a) >= eps);
+	return s;
 }
 
-void A(const double x, const int n, double& a)
+double A(const double x, const int n, double& a)
 {
 	double R = (x - 1)/ x * n/(n+1);
 	a *= R;
+	return a;
 }
